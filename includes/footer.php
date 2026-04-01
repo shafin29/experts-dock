@@ -1,3 +1,11 @@
+<?php
+// BASE_PATH is already defined by header.php; this guard handles edge cases.
+if (!defined('BASE_PATH')) {
+    $script_dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+    define('BASE_PATH', rtrim($script_dir, '/'));
+}
+$b = BASE_PATH;
+?>
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
     <div class="container">
@@ -5,7 +13,7 @@
 
             <!-- Brand -->
             <div class="footer-brand">
-                <a href="/index.php" class="logo logo--light">
+                <a href="<?= $b ?>/index.php" class="logo logo--light">
                     <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <rect width="36" height="36" rx="8" fill="#3B82F6"/>
                         <path d="M10 18C10 13.5817 13.5817 10 18 10C22.4183 10 26 13.5817 26 18C26 22.4183 22.4183 26 18 26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
@@ -25,10 +33,10 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="/index.php">Home</a></li>
-                    <li><a href="/about.php">About Us</a></li>
-                    <li><a href="/contact.php">Contact Us</a></li>
-                    <li><a href="/expert.php">Become an Expert</a></li>
+                    <li><a href="<?= $b ?>/index.php">Home</a></li>
+                    <li><a href="<?= $b ?>/about.php">About Us</a></li>
+                    <li><a href="<?= $b ?>/contact.php">Contact Us</a></li>
+                    <li><a href="<?= $b ?>/expert.php">Become an Expert</a></li>
                 </ul>
             </div>
 
@@ -36,10 +44,10 @@
             <div class="footer-col">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="/about.php#mission">Our Mission</a></li>
-                    <li><a href="/about.php#what-we-do">What We Do</a></li>
-                    <li><a href="/contact.php">Get in Touch</a></li>
-                    <li><a href="/unsubscribe.php">Unsubscribe</a></li>
+                    <li><a href="<?= $b ?>/about.php#mission">Our Mission</a></li>
+                    <li><a href="<?= $b ?>/about.php#what-we-do">What We Do</a></li>
+                    <li><a href="<?= $b ?>/contact.php">Get in Touch</a></li>
+                    <li><a href="<?= $b ?>/unsubscribe.php">Unsubscribe</a></li>
                 </ul>
             </div>
 
@@ -60,12 +68,12 @@
         <div class="footer-bottom">
             <p>&copy; <?= date('Y') ?> ExpertsDock. All rights reserved.</p>
             <p class="footer-legal">
-                <a href="/unsubscribe.php">Unsubscribe</a>
+                <a href="<?= $b ?>/unsubscribe.php">Unsubscribe</a>
             </p>
         </div>
     </div>
 </footer>
 
-<script src="/assets/js/main.js"></script>
+<script src="<?= $b ?>/assets/js/main.js"></script>
 </body>
 </html>

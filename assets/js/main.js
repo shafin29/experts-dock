@@ -148,7 +148,7 @@
 
             setSubmitLoading(btn, true);
 
-            ajaxPost('/ajax/submit_contact.php', {
+            ajaxPost((window.BASE_PATH || '') + '/ajax/submit_contact.php', {
                 name:    nameEl.value.trim(),
                 email:   emailEl.value.trim(),
                 message: msgEl.value.trim()
@@ -197,7 +197,7 @@
 
             setSubmitLoading(btn, true);
 
-            ajaxPost('/ajax/submit_expert.php', {
+            ajaxPost((window.BASE_PATH || '') + '/ajax/submit_expert.php', {
                 name:       nameEl.value.trim(),
                 linkedin:   liEl.value.trim(),
                 email:      emailEl.value.trim(),
@@ -230,7 +230,7 @@
 
             setSubmitLoading(btn, true);
 
-            ajaxPost('/ajax/submit_unsubscribe.php', {
+            ajaxPost((window.BASE_PATH || '') + '/ajax/submit_unsubscribe.php', {
                 email: emailEl.value.trim()
             }, (resp) => {
                 setSubmitLoading(btn, false);
