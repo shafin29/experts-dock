@@ -6,6 +6,10 @@
  * Returns JSON: { success: bool, message: string }
  */
 
+// Suppress PHP warnings/notices so they never corrupt JSON output
+@ini_set('display_errors', '0');
+error_reporting(0);
+
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
@@ -32,14 +36,16 @@ try {
     );
     $stmt->execute([':email' => $email]);
 
-    // ── Notify admin ──────────────────────────────────────────────────────────
+    // ── Notify admin (best-effort — never block success on mail failure) ─────
+    // mail() silently fails on localhost with no mail server; @ suppresses any
+    // PHP warnings that would otherwise corrupt the JSON output.
     $subject = 'Unsubscribe Request — Experts Dock';
     $body    = "A user has requested to unsubscribe from Experts Dock emails.\n\n"
              . "Email: {$email}\n"
              . "Date:  " . date('Y-m-d H:i:s') . " UTC\n\n"
              . "Please ensure this email is removed from all mailing lists.\n";
 
-    send_mail(MAIL_NOTIFY_TO, $subject, $body);
+    @send_mail(MAIL_NOTIFY_TO, $subject, $body);
 
     echo json_encode([
         'success' => true,

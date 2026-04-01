@@ -5,6 +5,9 @@
  * Returns JSON: { success: bool, message: string }
  */
 
+@ini_set('display_errors', '0');
+error_reporting(0);
+
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
